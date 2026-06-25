@@ -1,3 +1,4 @@
+cat > /mnt/user-data/outputs/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -15,17 +16,16 @@
     html { scroll-behavior: smooth; }
     body { background:var(--bg); color:var(--text); font-family:'Cairo',sans-serif; min-height:100vh; overflow-x:hidden; }
 
-    /* NAV */
-    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:1rem 2.5rem; background:rgba(13,15,20,0.9); backdrop-filter:blur(12px); border-bottom:1px solid rgba(75,158,255,0.12); }
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:1rem 2.5rem; background:rgba(13,15,20,0.9); backdrop-filter:blur(12px); border-bottom:1px solid rgba(75,158,255,0.12); flex-wrap:wrap; gap:0.5rem; }
     .nav-logo { font-family:'JetBrains Mono',monospace; font-size:1rem; color:var(--blue); }
     .nav-logo span { color:var(--gold); }
     .nav-links { display:flex; gap:1.2rem; list-style:none; align-items:center; flex-wrap:wrap; }
     .nav-links a { color:var(--dim); text-decoration:none; font-size:0.9rem; transition:color 0.2s; }
     .nav-links a:hover { color:var(--text); }
-    .admin-btn { background:rgba(245,200,66,0.1); border:1px solid rgba(245,200,66,0.3); color:var(--gold); padding:0.4rem 0.8rem; border-radius:5px; cursor:pointer; font-family:'Cairo',sans-serif; font-size:0.82rem; white-space:nowrap; transition:all 0.2s; }
+    .admin-btn { background:rgba(245,200,66,0.1); border:1px solid rgba(245,200,66,0.3); color:var(--gold); padding:0.4rem 0.8rem; border-radius:5px; cursor:pointer; font-family:'Cairo',sans-serif; font-size:0.82rem; transition:all 0.2s; white-space:nowrap; }
     .admin-btn:hover { background:rgba(245,200,66,0.2); }
+    @media(max-width:600px){ nav { padding:0.75rem 1rem; } .nav-links { gap:0.75rem; } .nav-logo { font-size:0.85rem; } }
 
-    /* HERO */
     .hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2rem; text-align:center; position:relative; overflow:hidden; }
     .hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(75,158,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(75,158,255,0.04) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; }
     .hero::after { content:''; position:absolute; top:30%; left:50%; transform:translate(-50%,-50%); width:500px; height:300px; background:radial-gradient(ellipse,rgba(75,158,255,0.12) 0%,transparent 70%); pointer-events:none; }
@@ -41,19 +41,16 @@
     .btn-outline { border:1px solid rgba(75,158,255,0.4); color:var(--blue); padding:0.75rem 1.8rem; border-radius:6px; font-family:'Cairo',sans-serif; font-size:0.95rem; font-weight:600; text-decoration:none; transition:border-color 0.2s,color 0.2s,transform 0.15s; background:none; cursor:pointer; }
     .btn-outline:hover { border-color:var(--blue); color:#fff; transform:translateY(-2px); }
 
-    /* STATS */
     .stats { background:var(--bg2); border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05); display:flex; justify-content:center; gap:4rem; padding:2rem; flex-wrap:wrap; }
     .stat { text-align:center; }
     .stat-num { font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:700; color:var(--gold); }
     .stat-label { color:var(--dim); font-size:0.85rem; margin-top:0.2rem; }
 
-    /* SECTIONS */
     .section { max-width:1100px; margin:0 auto; padding:5rem 2rem; }
     .section-label { font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--blue); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.75rem; }
     .section-title { font-size:2rem; font-weight:900; margin-bottom:0.5rem; }
     .section-desc { color:var(--dim); font-size:0.95rem; max-width:500px; line-height:1.7; margin-bottom:3rem; }
 
-    /* TOOLS GRID */
     .tools-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.25rem; }
     .tool-card { background:var(--bg2); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:1.5rem; transition:border-color 0.2s,transform 0.2s; position:relative; overflow:hidden; }
     .tool-card:hover { border-color:rgba(75,158,255,0.35); transform:translateY(-3px); }
@@ -67,18 +64,16 @@
     .tool-tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1rem; }
     .tag { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--blue); background:rgba(75,158,255,0.08); border:1px solid rgba(75,158,255,0.2); border-radius:3px; padding:0.15rem 0.5rem; }
 
-    /* DOWNLOAD LINKS inside card */
     .tool-downloads { border-top:1px solid rgba(255,255,255,0.06); padding-top:1rem; margin-top:0.5rem; display:flex; flex-direction:column; gap:0.5rem; }
     .dl-link { display:flex; align-items:center; justify-content:space-between; background:rgba(75,158,255,0.05); border:1px solid rgba(75,158,255,0.15); border-radius:6px; padding:0.5rem 0.75rem; text-decoration:none; transition:background 0.2s,border-color 0.2s; gap:0.5rem; }
     .dl-link:hover { background:rgba(75,158,255,0.12); border-color:rgba(75,158,255,0.4); }
     .dl-link-info { display:flex; align-items:center; gap:0.6rem; min-width:0; }
-    .dl-icon { font-size:1rem; flex-shrink:0; }
     .dl-name { font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .dl-size { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--dim); flex-shrink:0; }
     .dl-arrow { color:var(--blue); font-size:0.85rem; flex-shrink:0; }
     .no-downloads { color:var(--dim); font-size:0.8rem; font-style:italic; padding:0.4rem 0; }
+    .loading-dots { color:var(--dim); font-size:0.8rem; padding:0.4rem 0; }
 
-    /* ADMIN PANEL OVERLAY */
     .overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:300; backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:1rem; }
     .overlay.open { display:flex; }
     .admin-panel { background:var(--bg2); border:1px solid rgba(75,158,255,0.2); border-radius:14px; width:100%; max-width:600px; max-height:90vh; overflow-y:auto; padding:2rem; position:relative; }
@@ -87,41 +82,37 @@
     .close-btn { position:absolute; top:1rem; left:1rem; background:none; border:none; color:var(--dim); font-size:1.3rem; cursor:pointer; transition:color 0.2s; }
     .close-btn:hover { color:var(--text); }
 
-    /* ADMIN FORM */
     .form-group { margin-bottom:1rem; }
     .form-group label { display:block; font-size:0.82rem; color:var(--dim); margin-bottom:0.4rem; font-family:'JetBrains Mono',monospace; }
-    .form-group input, .form-group select, .form-group textarea {
-      width:100%; background:var(--bg3); border:1px solid rgba(255,255,255,0.1); border-radius:6px;
-      color:var(--text); font-family:'Cairo',sans-serif; font-size:0.9rem;
-      padding:0.6rem 0.9rem; outline:none; transition:border-color 0.2s;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--blue); }
+    .form-group input, .form-group select { width:100%; background:var(--bg3); border:1px solid rgba(255,255,255,0.1); border-radius:6px; color:var(--text); font-family:'Cairo',sans-serif; font-size:0.9rem; padding:0.6rem 0.9rem; outline:none; transition:border-color 0.2s; }
+    .form-group input:focus, .form-group select:focus { border-color:var(--blue); }
     .form-group input::placeholder { color:var(--dim); }
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
     .form-actions { display:flex; gap:0.75rem; margin-top:1.25rem; }
     .btn-add { background:var(--green); color:#000; padding:0.65rem 1.5rem; border-radius:6px; border:none; font-family:'Cairo',sans-serif; font-weight:700; font-size:0.9rem; cursor:pointer; transition:opacity 0.2s; }
     .btn-add:hover { opacity:0.85; }
-    .btn-cancel { background:rgba(255,255,255,0.06); color:var(--dim); padding:0.65rem 1.5rem; border-radius:6px; border:1px solid rgba(255,255,255,0.1); font-family:'Cairo',sans-serif; font-size:0.9rem; cursor:pointer; transition:all 0.2s; }
-    .btn-cancel:hover { color:var(--text); }
+    .btn-add:disabled { opacity:0.5; cursor:not-allowed; }
+    .btn-cancel { background:rgba(255,255,255,0.06); color:var(--dim); padding:0.65rem 1.5rem; border-radius:6px; border:1px solid rgba(255,255,255,0.1); font-family:'Cairo',sans-serif; font-size:0.9rem; cursor:pointer; }
 
-    /* EXISTING LINKS TABLE in admin */
     .admin-links-list { margin-top:1.5rem; }
     .admin-links-list h3 { font-size:0.9rem; color:var(--dim); font-family:'JetBrains Mono',monospace; margin-bottom:0.75rem; letter-spacing:0.05em; }
     .admin-link-item { display:flex; align-items:center; justify-content:space-between; gap:1rem; background:var(--bg3); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:0.6rem 0.9rem; margin-bottom:0.5rem; }
-    .ali-info { min-width:0; }
     .ali-tool { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--blue); }
-    .ali-name { font-size:0.85rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .ali-url { font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:220px; }
-    .del-btn { background:rgba(255,107,107,0.1); border:1px solid rgba(255,107,107,0.25); color:var(--red); padding:0.3rem 0.7rem; border-radius:4px; font-size:0.78rem; cursor:pointer; font-family:'Cairo',sans-serif; transition:all 0.2s; flex-shrink:0; }
+    .ali-name { font-size:0.85rem; }
+    .ali-url { font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:200px; }
+    .del-btn { background:rgba(255,107,107,0.1); border:1px solid rgba(255,107,107,0.25); color:var(--red); padding:0.3rem 0.7rem; border-radius:4px; font-size:0.78rem; cursor:pointer; font-family:'Cairo',sans-serif; flex-shrink:0; }
     .del-btn:hover { background:rgba(255,107,107,0.25); }
 
-    /* TOAST */
+    .pw-gate { display:flex; flex-direction:column; align-items:center; gap:1rem; padding:1rem 0; }
+    .pw-gate input { background:var(--bg3); border:1px solid rgba(255,255,255,0.1); border-radius:6px; color:var(--text); font-family:'JetBrains Mono',monospace; padding:0.6rem 1rem; width:100%; max-width:280px; outline:none; text-align:center; letter-spacing:0.1em; }
+    .pw-gate input:focus { border-color:var(--blue); }
+    .pw-err { color:var(--red); font-size:0.82rem; }
+
     .toast { position:fixed; bottom:2rem; right:2rem; background:var(--bg3); border:1px solid rgba(61,219,138,0.4); border-radius:8px; padding:0.75rem 1.25rem; font-size:0.88rem; color:var(--green); z-index:500; transform:translateY(100px); opacity:0; transition:all 0.3s; pointer-events:none; }
     .toast.show { transform:translateY(0); opacity:1; }
     .toast.error { border-color:rgba(255,107,107,0.4); color:var(--red); }
 
-    /* UPDATES */
-    .updates-list { display:flex; flex-direction:column; gap:0; }
+    .updates-list { display:flex; flex-direction:column; }
     .update-item { display:flex; gap:1.5rem; padding:1.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05); align-items:flex-start; }
     .update-item:last-child { border-bottom:none; }
     .update-date { font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--dim); flex-shrink:0; padding-top:0.2rem; min-width:90px; }
@@ -131,7 +122,6 @@
     .update-title { font-weight:700; font-size:0.95rem; margin-bottom:0.3rem; }
     .update-body { color:var(--dim); font-size:0.88rem; line-height:1.6; }
 
-    /* ABOUT */
     .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
     .about-text p { color:var(--dim); line-height:1.75; margin-bottom:1rem; }
     .about-text p strong { color:var(--text); }
@@ -148,29 +138,11 @@
     footer { border-top:1px solid rgba(255,255,255,0.06); padding:2rem; text-align:center; color:var(--dim); font-size:0.82rem; }
     footer span { color:var(--blue); }
 
-    /* PASSWORD GATE */
-    .pw-gate { display:flex; flex-direction:column; align-items:center; gap:1rem; padding:1rem 0; }
-    .pw-gate input { background:var(--bg3); border:1px solid rgba(255,255,255,0.1); border-radius:6px; color:var(--text); font-family:'JetBrains Mono',monospace; padding:0.6rem 1rem; width:100%; max-width:280px; outline:none; text-align:center; letter-spacing:0.1em; }
-    .pw-gate input:focus { border-color:var(--blue); }
-    .pw-err { color:var(--red); font-size:0.82rem; }
-
-    @media(max-width:700px){
-      .about-grid{grid-template-columns:1fr;}
-      .stats{gap:2rem;}
-      nav{padding:1rem 1.25rem;}
-      .nav-links{gap:1rem;}
-      .form-row{grid-template-columns:1fr;}
-    }
-      @media(max-width:600px){
-      nav { padding:0.75rem 1rem; flex-wrap:wrap; gap:0.5rem; }
-      .nav-links { gap:0.75rem; }
-      .nav-logo { font-size:0.85rem; }
-    }
+    @media(max-width:700px){ .about-grid{grid-template-columns:1fr;} .stats{gap:2rem;} .form-row{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">wad<span>_</span>al_hamla</div>
   <ul class="nav-links">
@@ -181,7 +153,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="terminal-badge">wad-al-hamla --version 1.0.0</div>
   <h1 class="hero-title">
@@ -195,23 +166,20 @@
   </div>
 </section>
 
-<!-- STATS -->
 <div class="stats">
-  <div class="stat"><div class="stat-num" id="stat-tools">6</div><div class="stat-label">أداة برمجية</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">أداة برمجية</div></div>
   <div class="stat"><div class="stat-num">48</div><div class="stat-label">إصدار منشور</div></div>
   <div class="stat"><div class="stat-num">2K+</div><div class="stat-label">مستخدم نشط</div></div>
   <div class="stat"><div class="stat-num" id="stat-links">0</div><div class="stat-label">رابط تحميل</div></div>
 </div>
 
-<!-- TOOLS -->
 <section class="section" id="tools">
   <div class="section-label">// الأدوات</div>
   <h2 class="section-title">حمولتي البرمجية</h2>
-  <p class="section-desc">أدوات طورتها لحل مشاكل حقيقية واجهتها — جاهزة للتحميل والاستخدام.</p>
+  <p class="section-desc">أدوات طورتها لحل مشاكل حقيقية — جاهزة للتحميل والاستخدام.</p>
   <div class="tools-grid" id="tools-grid"></div>
 </section>
 
-<!-- UPDATES -->
 <section style="background:var(--bg2);padding:1px 0;">
 <section class="section" id="updates">
   <div class="section-label">// التحديثات</div>
@@ -258,7 +226,6 @@
 </section>
 </section>
 
-<!-- ABOUT -->
 <section class="section" id="about">
   <div class="section-label">// عني</div>
   <h2 class="section-title">من أنا</h2>
@@ -266,7 +233,7 @@
     <div class="about-text">
       <p>مطور برمجيات مهتم بأتمتة المهام المتكررة وبناء أدوات تُسهّل حياة المطورين. أؤمن أن <strong>الأداة الجيدة تُحل مشكلة حقيقية</strong>.</p>
       <p>كل ما تجده هنا نتيجة مواجهة مشكلة فعلية في مشاريع حقيقية — لا نظريات، فقط <strong>كود يعمل</strong>.</p>
-      <p>أرحب بالملاحظات، الاقتراحات، وطلبات الميزات عبر قسم Issues في كل مستودع.</p>
+      <p>أرحب بالملاحظات والاقتراحات وطلبات الميزات.</p>
     </div>
     <div class="terminal-block">
       <div class="terminal-topbar">
@@ -296,10 +263,9 @@
 
 <!-- ADMIN OVERLAY -->
 <div class="overlay" id="overlay">
-  <div class="admin-panel" id="admin-panel">
+  <div class="admin-panel">
     <button class="close-btn" onclick="closeAdmin()">✕</button>
 
-    <!-- PASSWORD GATE -->
     <div id="pw-screen">
       <h2>🔐 لوحة التحكم</h2>
       <p class="sub">أدخل كلمة المرور للوصول إلى إدارة روابط التحميل</p>
@@ -310,10 +276,9 @@
       </div>
     </div>
 
-    <!-- MAIN ADMIN (hidden until pw correct) -->
     <div id="admin-main" style="display:none">
       <h2>⚙ إدارة روابط التحميل</h2>
-      <p class="sub">أضف روابط التحميل لكل أداة — ستظهر فوراً في الموقع للزوار.</p>
+      <p class="sub">أضف روابط التحميل — ستظهر فوراً لجميع الزوار.</p>
 
       <div class="form-row">
         <div class="form-group">
@@ -332,15 +297,13 @@
           <input type="text" id="f-label" placeholder="مثال: v2.1.0 — Windows" />
         </div>
       </div>
-
       <div class="form-group">
         <label>رابط التحميل (URL)</label>
-        <input type="url" id="f-url" placeholder="https://github.com/.../releases/download/..." />
+        <input type="url" id="f-url" placeholder="https://..." />
       </div>
-
       <div class="form-row">
         <div class="form-group">
-          <label>النوع / النظام</label>
+          <label>النظام / النوع</label>
           <select id="f-type">
             <option value="🪟 Windows (.exe)">🪟 Windows (.exe)</option>
             <option value="🍎 macOS (.dmg)">🍎 macOS (.dmg)</option>
@@ -356,188 +319,229 @@
           <input type="text" id="f-size" placeholder="مثال: 4.2 MB" />
         </div>
       </div>
-
       <div class="form-actions">
-        <button class="btn-add" onclick="addLink()">➕ إضافة الرابط</button>
+        <button class="btn-add" id="add-btn" onclick="addLink()">➕ إضافة الرابط</button>
         <button class="btn-cancel" onclick="closeAdmin()">إلغاء</button>
       </div>
 
       <div class="admin-links-list">
         <h3>// الروابط المضافة</h3>
-        <div id="admin-links-container"></div>
+        <div id="admin-links-container"><div class="loading-dots">جاري التحميل...</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-// ===== DATA =====
-const ADMIN_PASSWORD = 'wad2026'; // غير كلمة المرور هنا
+  // ======= SUPABASE CONFIG =======
+  const SUPABASE_URL = 'https://kaafvwymfgamhjjojvng.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImthYWZ2d3ltZmdhbWhqam9qdm5nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzODU0MzgsImV4cCI6MjA5Nzk2MTQzOH0.lmuJaZXySsRjoC0pTfRzG2p7PtU0MUUtXPn_szVm0MM';
+  const TABLE = 'download_links';
+  const ADMIN_PASSWORD = 'wad2026';
 
-const TOOLS_DATA = [
-  { id:'wad-cli',     icon:'⚙️', name:'wad-cli',     version:'v2.1.0 — stable', desc:'أداة سطر أوامر تُبسّط المهام المتكررة في مشاريع الـ Node وPython بأمر واحد.', tags:['CLI','Node.js','Python'] },
-  { id:'log-hunter',  icon:'🔍', name:'log-hunter',  version:'v1.4.2 — stable', desc:'محلل سجلات ذكي يستخرج الأنماط والأخطاء من ملفات الـ log الضخمة بكفاءة عالية.', tags:['Logs','Regex','Analytics'] },
-  { id:'deploy-kit',  icon:'🚀', name:'deploy-kit',  version:'v3.0.0-beta',     desc:'مجموعة سكريبتات لأتمتة عمليات النشر على VPS وDocker مع دعم CI/CD.', tags:['Docker','CI/CD','Bash'] },
-  { id:'db-snapshot', icon:'🗄️', name:'db-snapshot', version:'v1.0.1 — stable', desc:'أداة نسخ احتياطي ذكية لقواعد بيانات MySQL وPostgres مع جدولة تلقائية.', tags:['MySQL','Postgres','Backup'] },
-  { id:'pkg-audit',   icon:'📦', name:'pkg-audit',   version:'v0.9.0-beta',     desc:'يفحص تبعيات مشروعك ويكشف الثغرات والحزم المهجورة مع توصيات الترقية.', tags:['Security','npm','pip'] },
-  { id:'env-forge',   icon:'🔧', name:'env-forge',   version:'v1.2.0 — stable', desc:'مدير ملفات .env يتيح تشفيرها ومشاركتها بأمان بين أفراد الفريق.', tags:['Security','DevOps','Team'] },
-];
+  const TOOLS_DATA = [
+    { id:'wad-cli',     icon:'⚙️', name:'wad-cli',     version:'v2.1.0 — stable', desc:'أداة سطر أوامر تُبسّط المهام المتكررة في مشاريع الـ Node وPython بأمر واحد.', tags:['CLI','Node.js','Python'] },
+    { id:'log-hunter',  icon:'🔍', name:'log-hunter',  version:'v1.4.2 — stable', desc:'محلل سجلات ذكي يستخرج الأنماط والأخطاء من ملفات الـ log الضخمة بكفاءة عالية.', tags:['Logs','Regex','Analytics'] },
+    { id:'deploy-kit',  icon:'🚀', name:'deploy-kit',  version:'v3.0.0-beta',     desc:'مجموعة سكريبتات لأتمتة عمليات النشر على VPS وDocker مع دعم CI/CD.', tags:['Docker','CI/CD','Bash'] },
+    { id:'db-snapshot', icon:'🗄️', name:'db-snapshot', version:'v1.0.1 — stable', desc:'أداة نسخ احتياطي ذكية لقواعد بيانات MySQL وPostgres مع جدولة تلقائية.', tags:['MySQL','Postgres','Backup'] },
+    { id:'pkg-audit',   icon:'📦', name:'pkg-audit',   version:'v0.9.0-beta',     desc:'يفحص تبعيات مشروعك ويكشف الثغرات والحزم المهجورة مع توصيات الترقية.', tags:['Security','npm','pip'] },
+    { id:'env-forge',   icon:'🔧', name:'env-forge',   version:'v1.2.0 — stable', desc:'مدير ملفات .env يتيح تشفيرها ومشاركتها بأمان بين أفراد الفريق.', tags:['Security','DevOps','Team'] },
+  ];
 
-// Load links from localStorage
-function getLinks() {
-  try { return JSON.parse(localStorage.getItem('wad_links') || '[]'); } catch { return []; }
-}
-function saveLinks(links) {
-  localStorage.setItem('wad_links', JSON.stringify(links));
-}
+  // ======= SUPABASE HELPERS =======
+  async function sbFetch(path, options={}) {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation',
+        ...options.headers
+      },
+      ...options
+    });
+    if (!res.ok) throw new Error(await res.text());
+    const text = await res.text();
+    return text ? JSON.parse(text) : [];
+  }
 
-// ===== RENDER TOOLS =====
-function renderTools() {
-  const grid = document.getElementById('tools-grid');
-  const links = getLinks();
-  grid.innerHTML = '';
-  TOOLS_DATA.forEach(tool => {
-    const toolLinks = links.filter(l => l.toolId === tool.id);
-    const dlHTML = toolLinks.length === 0
-      ? '<div class="no-downloads">لا توجد روابط تحميل بعد</div>'
-      : toolLinks.map(l => `
-          <a class="dl-link" href="${escHtml(l.url)}" target="_blank" rel="noopener">
-            <div class="dl-link-info">
-              <span class="dl-icon">${l.type.split(' ')[0]}</span>
-              <div>
-                <div class="dl-name">${escHtml(l.label)}</div>
-                <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--dim);">${escHtml(l.type)}</div>
-              </div>
-            </div>
-            <div style="display:flex;align-items:center;gap:0.5rem;">
-              ${l.size ? `<span class="dl-size">${escHtml(l.size)}</span>` : ''}
-              <span class="dl-arrow">↓</span>
-            </div>
-          </a>`).join('');
+  async function getLinks() {
+    return await sbFetch(TABLE + '?order=created_at.asc');
+  }
 
-    grid.innerHTML += `
+  async function insertLink(data) {
+    return await sbFetch(TABLE, { method:'POST', body: JSON.stringify(data) });
+  }
+
+  async function deleteLink(id) {
+    return await sbFetch(TABLE + '?id=eq.' + id, { method:'DELETE' });
+  }
+
+  // ======= RENDER =======
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  async function renderTools() {
+    const grid = document.getElementById('tools-grid');
+    grid.innerHTML = TOOLS_DATA.map(t => `
       <div class="tool-card">
         <div class="tool-header">
-          <div class="tool-icon">${tool.icon}</div>
+          <div class="tool-icon">${t.icon}</div>
           <div>
-            <div class="tool-name">${tool.name}</div>
-            <div class="tool-version">${tool.version}</div>
+            <div class="tool-name">${t.name}</div>
+            <div class="tool-version">${t.version}</div>
           </div>
         </div>
-        <p class="tool-desc">${tool.desc}</p>
-        <div class="tool-tags">${tool.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-        <div class="tool-downloads">${dlHTML}</div>
-      </div>`;
+        <p class="tool-desc">${t.desc}</p>
+        <div class="tool-tags">${t.tags.map(x=>`<span class="tag">${x}</span>`).join('')}</div>
+        <div class="tool-downloads" id="dl-${t.id}">
+          <div class="loading-dots">جاري التحميل...</div>
+        </div>
+      </div>`).join('');
+
+    try {
+      const links = await getLinks();
+      document.getElementById('stat-links').textContent = links.length;
+      TOOLS_DATA.forEach(t => {
+        const box = document.getElementById('dl-' + t.id);
+        const tLinks = links.filter(l => l.tool_id === t.id);
+        box.innerHTML = tLinks.length === 0
+          ? '<div class="no-downloads">لا توجد روابط تحميل بعد</div>'
+          : tLinks.map(l => `
+              <a class="dl-link" href="${escHtml(l.url)}" target="_blank" rel="noopener">
+                <div class="dl-link-info">
+                  <span style="font-size:1rem">${l.type.split(' ')[0]}</span>
+                  <div>
+                    <div class="dl-name">${escHtml(l.label)}</div>
+                    <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--dim)">${escHtml(l.type)}</div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem">
+                  ${l.size ? `<span class="dl-size">${escHtml(l.size)}</span>` : ''}
+                  <span class="dl-arrow">↓</span>
+                </div>
+              </a>`).join('');
+      });
+    } catch(e) {
+      console.error(e);
+      TOOLS_DATA.forEach(t => {
+        document.getElementById('dl-' + t.id).innerHTML = '<div class="no-downloads">تعذّر تحميل الروابط</div>';
+      });
+    }
+  }
+
+  // ======= ADMIN =======
+  let adminUnlocked = false;
+
+  function openAdmin() {
+    document.getElementById('overlay').classList.add('open');
+    if (!adminUnlocked) {
+      document.getElementById('pw-screen').style.display = '';
+      document.getElementById('admin-main').style.display = 'none';
+      setTimeout(() => document.getElementById('pw-input').focus(), 100);
+    } else {
+      renderAdminLinks();
+    }
+  }
+
+  function closeAdmin() {
+    document.getElementById('overlay').classList.remove('open');
+  }
+
+  document.getElementById('overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeAdmin();
   });
-  // update stats
-  document.getElementById('stat-links').textContent = links.length;
-}
 
-function escHtml(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// ===== ADMIN =====
-let adminUnlocked = false;
-
-function openAdmin() {
-  document.getElementById('overlay').classList.add('open');
-  if (!adminUnlocked) {
-    document.getElementById('pw-screen').style.display = '';
-    document.getElementById('admin-main').style.display = 'none';
-    setTimeout(() => document.getElementById('pw-input').focus(), 100);
-  } else {
-    renderAdminLinks();
+  function checkPw() {
+    if (document.getElementById('pw-input').value === ADMIN_PASSWORD) {
+      adminUnlocked = true;
+      document.getElementById('pw-screen').style.display = 'none';
+      document.getElementById('admin-main').style.display = '';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-err').textContent = '';
+      renderAdminLinks();
+    } else {
+      document.getElementById('pw-err').textContent = '❌ كلمة المرور غير صحيحة';
+      document.getElementById('pw-input').value = '';
+    }
   }
-}
 
-function closeAdmin() {
-  document.getElementById('overlay').classList.remove('open');
-}
+  async function addLink() {
+    const label = document.getElementById('f-label').value.trim();
+    const url   = document.getElementById('f-url').value.trim();
+    const toolId = document.getElementById('f-tool').value;
+    const type  = document.getElementById('f-type').value;
+    const size  = document.getElementById('f-size').value.trim();
 
-document.getElementById('overlay').addEventListener('click', function(e) {
-  if (e.target === this) closeAdmin();
-});
+    if (!label) { showToast('أدخل تسمية للرابط', true); return; }
+    if (!url || !url.startsWith('http')) { showToast('أدخل رابطاً صحيحاً يبدأ بـ https://', true); return; }
 
-function checkPw() {
-  const val = document.getElementById('pw-input').value;
-  if (val === ADMIN_PASSWORD) {
-    adminUnlocked = true;
-    document.getElementById('pw-screen').style.display = 'none';
-    document.getElementById('admin-main').style.display = '';
-    document.getElementById('pw-input').value = '';
-    document.getElementById('pw-err').textContent = '';
-    renderAdminLinks();
-  } else {
-    document.getElementById('pw-err').textContent = '❌ كلمة المرور غير صحيحة';
-    document.getElementById('pw-input').value = '';
-    document.getElementById('pw-input').focus();
+    const btn = document.getElementById('add-btn');
+    btn.disabled = true; btn.textContent = 'جاري الحفظ...';
+
+    try {
+      await insertLink({ tool_id: toolId, label, url, type, size });
+      document.getElementById('f-label').value = '';
+      document.getElementById('f-url').value = '';
+      document.getElementById('f-size').value = '';
+      showToast('✓ تم إضافة الرابط لجميع الزوار');
+      await renderTools();
+      await renderAdminLinks();
+    } catch(e) {
+      showToast('خطأ في الحفظ: ' + e.message, true);
+    }
+    btn.disabled = false; btn.textContent = '➕ إضافة الرابط';
   }
-}
 
-function addLink() {
-  const toolId = document.getElementById('f-tool').value;
-  const label  = document.getElementById('f-label').value.trim();
-  const url    = document.getElementById('f-url').value.trim();
-  const type   = document.getElementById('f-type').value;
-  const size   = document.getElementById('f-size').value.trim();
+  async function removeLink(id) {
+    try {
+      await deleteLink(id);
+      showToast('تم حذف الرابط');
+      await renderTools();
+      await renderAdminLinks();
+    } catch(e) {
+      showToast('خطأ في الحذف', true);
+    }
+  }
 
-  if (!label) { showToast('أدخل تسمية للرابط', true); return; }
-  if (!url || !url.startsWith('http')) { showToast('أدخل رابطاً صحيحاً يبدأ بـ https://', true); return; }
+  async function renderAdminLinks() {
+    const c = document.getElementById('admin-links-container');
+    c.innerHTML = '<div class="loading-dots">جاري التحميل...</div>';
+    try {
+      const links = await getLinks();
+      if (links.length === 0) {
+        c.innerHTML = '<div style="color:var(--dim);font-size:0.85rem;padding:0.5rem 0">لم تُضف أي روابط بعد.</div>';
+        return;
+      }
+      c.innerHTML = links.map(l => `
+        <div class="admin-link-item">
+          <div style="min-width:0">
+            <div class="ali-tool">${escHtml(l.tool_id)}</div>
+            <div class="ali-name">${escHtml(l.label)} ${l.size ? '('+escHtml(l.size)+')' : ''}</div>
+            <div class="ali-url">${escHtml(l.url)}</div>
+          </div>
+          <button class="del-btn" onclick="removeLink('${l.id}')">حذف</button>
+        </div>`).join('');
+    } catch(e) {
+      c.innerHTML = '<div style="color:var(--red);font-size:0.85rem">تعذّر التحميل</div>';
+    }
+  }
 
-  const links = getLinks();
-  links.push({ id: Date.now().toString(), toolId, label, url, type, size });
-  saveLinks(links);
+  function showToast(msg, isError=false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast' + (isError ? ' error' : '');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // INIT
   renderTools();
-  renderAdminLinks();
-  showToast('✓ تم إضافة الرابط بنجاح');
-
-  // reset fields
-  document.getElementById('f-label').value = '';
-  document.getElementById('f-url').value = '';
-  document.getElementById('f-size').value = '';
-}
-
-function deleteLink(id) {
-  const links = getLinks().filter(l => l.id !== id);
-  saveLinks(links);
-  renderTools();
-  renderAdminLinks();
-  showToast('تم حذف الرابط');
-}
-
-function renderAdminLinks() {
-  const container = document.getElementById('admin-links-container');
-  const links = getLinks();
-  if (links.length === 0) {
-    container.innerHTML = '<div style="color:var(--dim);font-size:0.85rem;padding:0.5rem 0;">لم تُضف أي روابط بعد.</div>';
-    return;
-  }
-  container.innerHTML = links.map(l => `
-    <div class="admin-link-item">
-      <div class="ali-info">
-        <div class="ali-tool">${escHtml(l.toolId)}</div>
-        <div class="ali-name">${escHtml(l.label)} — ${l.type.split(' ')[0]} ${l.size ? '('+escHtml(l.size)+')' : ''}</div>
-        <div class="ali-url">${escHtml(l.url)}</div>
-      </div>
-      <button class="del-btn" onclick="deleteLink('${l.id}')">حذف</button>
-    </div>`).join('');
-}
-
-// ===== TOAST =====
-function showToast(msg, isError=false) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast' + (isError ? ' error' : '');
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
-}
-
-// ===== INIT =====
-renderTools();
 </script>
 </body>
-            </html>
+</html>
+HTMLEOF
+echo "done"
